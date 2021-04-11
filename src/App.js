@@ -30,6 +30,7 @@ function getRandomNumber(x) {
 }
 
 const App = () => {
+	const [songsLoaded, setSongsLoaded] = useState(false);
 	const [text, setText] = useState('');
 	const [tracks, setTracks] = useState({});
 	console.log('tracks', tracks);
@@ -45,8 +46,13 @@ const App = () => {
 			.then((data) => {
 				setTracks(data);
 				setText(`Nous avons retrouvé ${data.total} musiques!`);
+				setSongsLoaded(true);
 			});
 	}, []);
+
+	if (!songsLoaded) {
+		return <img src={loading} className='App-logo' alt='loading' />;
+	}
 
 	return (
 		<div className='App'>
