@@ -9,7 +9,7 @@ import Button from './Button';
 import AlbumCover from './AlbumCover';
 
 const apiToken =
-	'BQC8gLRmvy0C1PI5JQ-Y2373_-iD-YQytOk60NCa8yisIjN02uHc6GU2CiVrC9xD0a58neroSJyh2np1gZB9FWSzybSwEuaSbfY_dRzwb0tfyRn1L61kv1iKH1DQ8kPpXwj5-XpzMZdEcCeGLMN_nsREryiS';
+	'BQCMxCSV9kF0yotwU3yBkQ40kJTEK98yqdeydeWgO4jwG_ixftK6kKR9LLcxPlmCbXZFNUAdQrWVscx6HYfBjvq9m4OEg1gBLATqWGP8vSxAH_OpH-Czo0WG_RWq3rhJWx1-ZPZ_S9vPxzTI0W3qjuOt-QXM';
 
 function shuffleArray(array) {
 	let counter = array.length;
@@ -35,12 +35,7 @@ const App = () => {
 	const [songsLoaded, setSongsLoaded] = useState(false);
 	const [total, setTotal] = useState(0);
 	const [tracks, setTracks] = useState([]);
-
-	// console.log('tracks', tracks);
-	// console.log(
-	// 	'tracks',
-	// 	tracks.map(({ track: { name, preview_url } }) => ({ name, preview_url }))
-	// );
+	let timer = null;
 
 	useEffect(() => {
 		fetch('https://api.spotify.com/v1/me/tracks', {
@@ -58,12 +53,19 @@ const App = () => {
 			});
 	}, []);
 
+	useEffect(() => {
+		timer = setTimeout(() => selectNewTrackToGuess(), 30000);
+	}, [currentTrack, timer]);
+
 	const selectNewTrackToGuess = () => {
-		setCurrentTrack(tracks[getRandomNumber(tracks.length)].track);
+		if (tracks.length) {
+			setCurrentTrack(tracks[getRandomNumber(tracks.length)].track);
+		}
 	};
 
 	const checkAnswer = (responseTrackId) => {
 		if (responseTrackId === currentTrack.id) {
+			clearTimeout(timer);
 			swal('Bravo 🎉', 'Bosh Like a Boss', 'success').then(
 				selectNewTrackToGuess
 			);
@@ -86,10 +88,10 @@ const App = () => {
 		<div className='App'>
 			<header className='App-header'>
 				<img src={logo} className='App-logo' alt='logo' />
-				<h1 className='App-title'>Nous avons retrouvé {total} musiques!</h1>
+				<h1 className='App-title'>Vous avez +{total} musiques 😍!</h1>
 			</header>
 			<div className='App-images'>
-				<p>Votre premiere chanson ♥️: {currentTrack.name} </p>
+				<p>Sélectionnez la bonne réponse</p>
 				<AlbumCover track={currentTrack} />
 				<Sound
 					url={currentTrack.preview_url}
@@ -97,8 +99,11 @@ const App = () => {
 				/>
 			</div>
 			<div className='App-buttons'>
-				{displayedTracks.map(({ id, name }) => (
-					<Button key={id} onClick={() => checkAnswer(id)}>
+				{displayedTracks.map(({ id, name }, index) => (
+					<Button
+						key={`${currentTrack.id}${id}${index}`}
+						onClick={() => checkAnswer(id)}
+					>
 						{name}
 					</Button>
 				))}
