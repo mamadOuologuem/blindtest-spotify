@@ -7,7 +7,8 @@ import './App.css';
 import Sound from 'react-sound';
 import Button from './Button';
 
-const apiToken = '<<Copiez le token de Spotify ici>>';
+const apiToken =
+	'BQDmd1MNNAU7iZfuggmu_XH0EYbGJTR6YhyLpnuX8kI5yDhl66MfEoNaOO1Ecxe8oqy9dqanckbu6fVKak34-mVEnoJuUE0-agzqjkMn4y01TuJQT5R2SuEwq2w2MhIKFDhkoCZsqqXAhzbpt6P5P2FwABLK';
 
 function shuffleArray(array) {
 	let counter = array.length;
@@ -30,9 +31,21 @@ function getRandomNumber(x) {
 
 const App = () => {
 	const [text, setText] = useState('');
+	const [tracks, setTracks] = useState({});
+	console.log('tracks', tracks);
 
 	useEffect(() => {
-		setText('Bonjour');
+		fetch('https://api.spotify.com/v1/me/tracks', {
+			method: 'GET',
+			headers: {
+				Authorization: 'Bearer ' + apiToken,
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setTracks(data);
+				setText(`Nous avons retrouvé ${data.total} musiques!`);
+			});
 	}, []);
 
 	return (
