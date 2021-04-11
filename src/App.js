@@ -6,6 +6,7 @@ import loading from './loading.svg';
 import './App.css';
 import Sound from 'react-sound';
 import Button from './Button';
+import AlbumCover from './AlbumCover';
 
 const apiToken =
 	'BQDmd1MNNAU7iZfuggmu_XH0EYbGJTR6YhyLpnuX8kI5yDhl66MfEoNaOO1Ecxe8oqy9dqanckbu6fVKak34-mVEnoJuUE0-agzqjkMn4y01TuJQT5R2SuEwq2w2MhIKFDhkoCZsqqXAhzbpt6P5P2FwABLK';
@@ -61,7 +62,8 @@ const App = () => {
 				<h1 className='App-title'>Nous avons retrouvé {total} musiques!</h1>
 			</header>
 			<div className='App-images'>
-				<p>Il va falloir modifier le code pour faire un vrai Blindtest !!</p>
+				<p>Votre premiere chanson ♥️: {tracks[0].track.name} </p>
+				<AlbumCover track={tracks[0].track} />
 			</div>
 			<div className='App-buttons'></div>
 		</div>
