@@ -31,7 +31,7 @@ function getRandomNumber(x) {
 
 const App = () => {
 	const [songsLoaded, setSongsLoaded] = useState(false);
-	const [text, setText] = useState('');
+	const [total, setTotal] = useState(0);
 	const [tracks, setTracks] = useState({});
 	console.log('tracks', tracks);
 
@@ -44,8 +44,8 @@ const App = () => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				setTracks(data);
-				setText(`Nous avons retrouvé ${data.total} musiques!`);
+				setTracks(data.items);
+				setTotal(data.total);
 				setSongsLoaded(true);
 			});
 	}, []);
@@ -58,7 +58,7 @@ const App = () => {
 		<div className='App'>
 			<header className='App-header'>
 				<img src={logo} className='App-logo' alt='logo' />
-				<h1 className='App-title'>{text}</h1>
+				<h1 className='App-title'>Nous avons retrouvé {total} musiques!</h1>
 			</header>
 			<div className='App-images'>
 				<p>Il va falloir modifier le code pour faire un vrai Blindtest !!</p>
