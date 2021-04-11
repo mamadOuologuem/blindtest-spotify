@@ -58,9 +58,15 @@ const App = () => {
 			});
 	}, []);
 
+	const selectNewTrackToGuess = () => {
+		setCurrentTrack(tracks[getRandomNumber(tracks.length)].track);
+	};
+
 	const checkAnswer = (responseTrackId) => {
 		if (responseTrackId === currentTrack.id) {
-			swal('Bravo 🎉', 'Bosh Like a Boss', 'success');
+			swal('Bravo 🎉', 'Bosh Like a Boss', 'success').then(
+				selectNewTrackToGuess
+			);
 		} else {
 			swal('Mauvaise pioche 😜', 'Essaye encore', 'error');
 		}
