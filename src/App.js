@@ -70,8 +70,11 @@ const App = () => {
 		return <img src={loading} className='App-logo' alt='loading' />;
 	}
 
-	const track2 = tracks[getRandomNumber(tracks.length)].track;
-	const track3 = tracks[getRandomNumber(tracks.length)].track;
+	const displayedTracks = shuffleArray([
+		currentTrack,
+		tracks[getRandomNumber(tracks.length)].track,
+		tracks[getRandomNumber(tracks.length)].track,
+	]);
 
 	return (
 		<div className='App'>
@@ -88,11 +91,11 @@ const App = () => {
 				/>
 			</div>
 			<div className='App-buttons'>
-				<Button onClick={() => checkAnswer(currentTrack.id)}>
-					{currentTrack.name}
-				</Button>
-				<Button onClick={() => checkAnswer(track2.id)}>{track2.name}</Button>
-				<Button onClick={() => checkAnswer(track3.id)}>{track3.name}</Button>
+				{displayedTracks.map(({ id, name }) => (
+					<Button key={id} onClick={() => checkAnswer(id)}>
+						{name}
+					</Button>
+				))}
 			</div>
 		</div>
 	);
