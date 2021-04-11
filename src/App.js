@@ -9,7 +9,7 @@ import Button from './Button';
 import AlbumCover from './AlbumCover';
 
 const apiToken =
-	'BQDmd1MNNAU7iZfuggmu_XH0EYbGJTR6YhyLpnuX8kI5yDhl66MfEoNaOO1Ecxe8oqy9dqanckbu6fVKak34-mVEnoJuUE0-agzqjkMn4y01TuJQT5R2SuEwq2w2MhIKFDhkoCZsqqXAhzbpt6P5P2FwABLK';
+	'BQC8gLRmvy0C1PI5JQ-Y2373_-iD-YQytOk60NCa8yisIjN02uHc6GU2CiVrC9xD0a58neroSJyh2np1gZB9FWSzybSwEuaSbfY_dRzwb0tfyRn1L61kv1iKH1DQ8kPpXwj5-XpzMZdEcCeGLMN_nsREryiS';
 
 function shuffleArray(array) {
 	let counter = array.length;
@@ -33,8 +33,11 @@ function getRandomNumber(x) {
 const App = () => {
 	const [songsLoaded, setSongsLoaded] = useState(false);
 	const [total, setTotal] = useState(0);
-	const [tracks, setTracks] = useState({});
-	console.log('tracks', tracks);
+	const [tracks, setTracks] = useState([]);
+	console.log(
+		'tracks',
+		tracks.map(({ track: { name, preview_url } }) => ({ name, preview_url }))
+	);
 
 	useEffect(() => {
 		fetch('https://api.spotify.com/v1/me/tracks', {
@@ -55,7 +58,9 @@ const App = () => {
 		return <img src={loading} className='App-logo' alt='loading' />;
 	}
 
-	const currentTrack = tracks[2].track;
+	const track1 = tracks[0].track;
+	const track2 = tracks[3].track;
+	const track3 = tracks[8].track;
 	return (
 		<div className='App'>
 			<header className='App-header'>
@@ -63,14 +68,15 @@ const App = () => {
 				<h1 className='App-title'>Nous avons retrouvé {total} musiques!</h1>
 			</header>
 			<div className='App-images'>
-				<p>Votre premiere chanson ♥️: {currentTrack.name} </p>
-				<AlbumCover track={currentTrack} />
-				<Sound
-					url={currentTrack.preview_url}
-					playStatus={Sound.status.PLAYING}
-				/>
+				<p>Votre premiere chanson ♥️: {track1.name} </p>
+				<AlbumCover track={track1} />
+				<Sound url={track1.preview_url} playStatus={Sound.status.PLAYING} />
 			</div>
-			<div className='App-buttons'></div>
+			<div className='App-buttons'>
+				<Button>{track1.name}</Button>
+				<Button>{track2.name}</Button>
+				<Button>{track3.name}</Button>
+			</div>
 		</div>
 	);
 };
