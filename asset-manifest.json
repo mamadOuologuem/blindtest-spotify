@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/blindtest-spotify/static/css/main.d6b33de5.chunk.css",
-    "main.js": "/blindtest-spotify/static/js/main.f74a0f0e.chunk.js",
-    "main.js.map": "/blindtest-spotify/static/js/main.f74a0f0e.chunk.js.map",
+    "main.js": "/blindtest-spotify/static/js/main.b5106615.chunk.js",
+    "main.js.map": "/blindtest-spotify/static/js/main.b5106615.chunk.js.map",
     "runtime-main.js": "/blindtest-spotify/static/js/runtime-main.0c270892.js",
     "runtime-main.js.map": "/blindtest-spotify/static/js/runtime-main.0c270892.js.map",
     "static/js/2.229f8d61.chunk.js": "/blindtest-spotify/static/js/2.229f8d61.chunk.js",
     "static/js/2.229f8d61.chunk.js.map": "/blindtest-spotify/static/js/2.229f8d61.chunk.js.map",
     "index.html": "/blindtest-spotify/index.html",
-    "precache-manifest.48907174b1694a5f1270e8d15060eaa1.js": "/blindtest-spotify/precache-manifest.48907174b1694a5f1270e8d15060eaa1.js",
+    "precache-manifest.30b160f3cd1763ed4c4e7cb278aac06e.js": "/blindtest-spotify/precache-manifest.30b160f3cd1763ed4c4e7cb278aac06e.js",
     "service-worker.js": "/blindtest-spotify/service-worker.js",
     "static/css/main.d6b33de5.chunk.css.map": "/blindtest-spotify/static/css/main.d6b33de5.chunk.css.map",
     "static/js/2.229f8d61.chunk.js.LICENSE.txt": "/blindtest-spotify/static/js/2.229f8d61.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.0c270892.js",
     "static/js/2.229f8d61.chunk.js",
     "static/css/main.d6b33de5.chunk.css",
-    "static/js/main.f74a0f0e.chunk.js"
+    "static/js/main.b5106615.chunk.js"
   ]
 }
