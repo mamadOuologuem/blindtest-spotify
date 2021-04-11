@@ -55,6 +55,7 @@ const App = () => {
 		return <img src={loading} className='App-logo' alt='loading' />;
 	}
 
+	const currentTrack = tracks[2].track;
 	return (
 		<div className='App'>
 			<header className='App-header'>
@@ -62,8 +63,12 @@ const App = () => {
 				<h1 className='App-title'>Nous avons retrouvé {total} musiques!</h1>
 			</header>
 			<div className='App-images'>
-				<p>Votre premiere chanson ♥️: {tracks[0].track.name} </p>
-				<AlbumCover track={tracks[0].track} />
+				<p>Votre premiere chanson ♥️: {currentTrack.name} </p>
+				<AlbumCover track={currentTrack} />
+				<Sound
+					url={currentTrack.preview_url}
+					playStatus={Sound.status.PLAYING}
+				/>
 			</div>
 			<div className='App-buttons'></div>
 		</div>
