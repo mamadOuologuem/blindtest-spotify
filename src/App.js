@@ -1,6 +1,6 @@
 /*global swal*/
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import loading from './loading.svg';
 import './App.css';
@@ -29,11 +29,17 @@ function getRandomNumber(x) {
 }
 
 const App = () => {
+	const [text, setText] = useState('');
+
+	useEffect(() => {
+		setText('Bonjour');
+	}, []);
+
 	return (
 		<div className='App'>
 			<header className='App-header'>
 				<img src={logo} className='App-logo' alt='logo' />
-				<h1 className='App-title'>Bienvenue sur le Blindtest</h1>
+				<h1 className='App-title'>{text}</h1>
 			</header>
 			<div className='App-images'>
 				<p>Il va falloir modifier le code pour faire un vrai Blindtest !!</p>
